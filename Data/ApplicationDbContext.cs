@@ -13,44 +13,44 @@ namespace Ecom_mvc.Data
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderItem> OrderItems { get; set; }
         public DbSet<Payment> Payments { get; set; }
-        // protected override void OnModelCreating(ModelBuilder modelBuilder)
-        // {
-        //     base.OnModelCreating(modelBuilder);
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
 
-        //     modelBuilder.Entity<Order>()
-        //         .HasOne(o => o.User)
-        //         .WithMany(u => u.Orders)
-        //         .HasForeignKey(o => o.UserId);
+            modelBuilder.Entity<Order>()
+                .HasOne(o => o.User)
+                .WithMany(u => u.Orders)
+                .HasForeignKey(o => o.UserId);
 
-        //     modelBuilder.Entity<Order>()
-        //         .HasOne(o => o.ShippingAddress)
-        //         .WithMany(a => a.OrdersShipping)
-        //         .HasForeignKey(o => o.ShippingAddressId);
+            modelBuilder.Entity<Order>()
+                .HasOne(o => o.ShippingAddress)
+                .WithMany()
+                .HasForeignKey(o => o.ShippingAddressId);
 
-        //     modelBuilder.Entity<Order>()
-        //         .HasOne(o => o.BillingAddress)
-        //         .WithMany(a => a.OrdersBilling)
-        //         .HasForeignKey(o => o.BillingAddressId);
+            modelBuilder.Entity<Order>()
+                .HasOne(o => o.BillingAddress)
+                .WithMany()
+                .HasForeignKey(o => o.BillingAddressId);
 
-        //     modelBuilder.Entity<OrderItem>()
-        //         .HasOne(oi => oi.Order)
-        //         .WithMany(o => o.OrderItems)
-        //         .HasForeignKey(oi => oi.OrderId);
+            modelBuilder.Entity<OrderItem>()
+                .HasOne(oi => oi.Order)
+                .WithMany(o => o.OrderItems)
+                .HasForeignKey(oi => oi.OrderId);
 
-        //     modelBuilder.Entity<OrderItem>()
-        //         .HasOne(oi => oi.Product)
-        //         .WithMany(p => p.OrderItems)
-        //         .HasForeignKey(oi => oi.ProductId);
+            modelBuilder.Entity<OrderItem>()
+                .HasOne(oi => oi.Product)
+                .WithMany(p => p.OrderItems)
+                .HasForeignKey(oi => oi.ProductId);
 
-        //     modelBuilder.Entity<Payment>()
-        //         .HasOne(p => p.Order)
-        //         .WithMany(o => o.Payments)
-        //         .HasForeignKey(p => p.OrderId);
+            modelBuilder.Entity<Payment>()
+                .HasOne(p => p.Order)
+                .WithMany(o => o.Payments)
+                .HasForeignKey(p => p.OrderId);
 
-        //     modelBuilder.Entity<User>()
-        //         .HasIndex(u => u.FirebaseUserId)
-        //         .IsUnique();
-        // }
+            modelBuilder.Entity<User>()
+                .HasIndex(u => u.FirebaseUserId)
+                .IsUnique();
+        }
 
         public override int SaveChanges()
         {

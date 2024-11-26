@@ -17,6 +17,6 @@ namespace Ecom_mvc.Models
         public decimal Price { get; set; }
 
         // Navigation properties
-        public Order Order { get; set; }
-        public Product Product { get; set; }
+        public required Order Order { get; set; }
+        public required Product Product { get; set; }
     }}

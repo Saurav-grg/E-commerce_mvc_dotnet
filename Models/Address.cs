@@ -1,6 +1,4 @@
-using System;
 using System.ComponentModel.DataAnnotations;
-
 namespace Ecom_mvc.Models
 {
     public class Address : BaseModel
@@ -12,28 +10,28 @@ namespace Ecom_mvc.Models
 
         [Required]
         [MaxLength(200)]
-        public string AddressLine1 { get; set; }
+        public required string AddressLine1 { get; set; }
 
         [MaxLength(200)]
-        public string AddressLine2 { get; set; }
+        public string? AddressLine2 { get; set; }
 
         [Required]
         [MaxLength(100)]
-        public string City { get; set; }
+        public required string City { get; set; }
 
         [Required]
         [MaxLength(100)]
-        public string State { get; set; }
+        public required string State { get; set; }
 
         [Required]
         [MaxLength(20)]
-        public string ZipCode { get; set; }
+        public required string ZipCode { get; set; }
 
         [Required]
         [MaxLength(100)]
-        public string Country { get; set; }
+        public required string Country { get; set; }
 
         // Navigation property
-        public User User { get; set; }
+        public required User User { get; set; }
     }
 }
